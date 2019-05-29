@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>品牌管理</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="panel  panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">品牌管理</h3>
+        </div>
+        <div class="panel-body form-inline">
+            <label>编号:<input type="text" class="form-control" v-model="id"></label>
+            <label>品牌名称:<input type="text" class="form-control" v-model="name" @keyup.enter="add"></label>
+            <input type="button" value="添加" class="btn btn-primary" @click="add">
+            <label>搜索:<input type="text" class="form-control" placeholder="按品牌名称搜索,如“奔驰" v-model="keywords" id="search" v-focus v-color="'red'"></label>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>编号</td>
+                <td>品牌名称</td>
+                <td>时间</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in Search(keywords)" :key="item.id">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.ctime | dataFormat('') }}</td>
+                <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" src="js/Brand.js"></script>
+</body>
+</html>
